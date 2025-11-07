@@ -51,7 +51,7 @@ mood-diary/
 1. Склонируйте репозиторий:
 
 ```bash
-git clone https://github.com/yourusername/mood-diary.git
+git clone https://github.com/mraiana/Mood-Diary.gits
 ```
 
 2. Откройте `index.html` в браузере.
