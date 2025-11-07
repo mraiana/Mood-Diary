@@ -74,9 +74,9 @@ git clone https://github.com/mraiana/Mood-Diary.gits
 
 ## 🖼 Скриншоты (пример)
 
-(![Снимок экрана_7-11-2025_152437_127 0 0 1](https://github.com/user-attachments/assets/8482031d-ca64-47aa-8ca4-d669e816503c)
-(![Снимок экрана_7-11-2025_152718_127 0 0 1](https://github.com/user-attachments/assets/426e1d4d-a7f2-4d9a-b00d-3c8ba42971d6)
-(![Снимок экрана_7-11-2025_152732_127 0 0 1](https://github.com/user-attachments/assets/2e72a294-2ce9-4089-8282-d3e08e350647)
+![Снимок экрана_7-11-2025_152437_127 0 0 1](https://github.com/user-attachments/assets/8482031d-ca64-47aa-8ca4-d669e816503c)
+![Снимок экрана_7-11-2025_152718_127 0 0 1](https://github.com/user-attachments/assets/426e1d4d-a7f2-4d9a-b00d-3c8ba42971d6)
+![Снимок экрана_7-11-2025_152732_127 0 0 1](https://github.com/user-attachments/assets/2e72a294-2ce9-4089-8282-d3e08e350647)
 
 ---
 
