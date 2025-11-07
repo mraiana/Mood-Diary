@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mood diary</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Mood Diary</h1>
+
+    <form id="feedback-form">
+      <div class="form-group">
+        <label>Select your mood:</label>
+
+        <div id="mood-selector">
+          <button type="button" class="mood-btn" data-mood="Terrible">😠</button>
+          <button type="button" class="mood-btn" data-mood="Bad">😕</button>
+          <button type="button" class="mood-btn" data-mood="Okay">😐</button>
+          <button type="button" class="mood-btn" data-mood="Good">🙂</button>
+          <button type="button" class="mood-btn" data-mood="Excellent">😄</button>
+        </div>
+        <input type="hidden" id="selected-mood" value="">
+        <p id="mood-error">Please select your mood</p>
+      </div>
+
+      <!-- Activities -->
+      <div class="form-group">
+        <label for="tags">Activities (separated by commas):</label>
+        <input type="text" id="tags" name="tags" placeholder="For example: work, friends, sports..." />
+      </div>
+
+      <!-- Comments -->
+      <div class="form-group">
+        <label for="comment">Comment:</label>
+        <textarea id="comment" name="comment" rows="4" placeholder="What happened today?" required></textarea>
+      </div>
+
+      <button type="submit" id="submit-btn">Save entry</button>
+    </form>
+
+    <div id="feedback-section">
+      <h2>Your latest entries:</h2>
+      <p id="empty-message">No entries yet.</p>
+      <ul id="review_list"></ul>
+    </div>
+  </div>
+
+  <script>
+    // Элементы формы и список записей
+    const moodButtons = document.querySelectorAll('.mood-btn');
+    const selectedMoodInput = document.getElementById('selected-mood');
+    const moodError = document.getElementById('mood-error');
+    const feedbackForm = document.getElementById('feedback-form');
+    const reviewList = document.getElementById('review_list');
+    const emptyMessage = document.getElementById('empty-message');
+    const tagsInput = document.getElementById('tags');
+    const commentInput = document.getElementById('comment');
+
+// Соответствие настроения и цвета кнопок и записей
+    const moodColors = {
+        'Terrible': '#8B0000',      
+        'Bad': '#FF6347',       
+        'Okay': '#FFA500',   
+        'Good': '#9ACD32',      
+        'Excellent': '#32CD32'      
+    };
+
+    // Установка цвета кнопок
+    moodButtons.forEach(btn => {
+        btn.style.backgroundColor = moodColors[btn.dataset.mood];
+    });
+
+    // Выбор настроения
+    moodButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Сброс выделения всех кнопок
+            moodButtons.forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+
+            // Сохранение выбранного настроения
+            selectedMoodInput.value = button.dataset.mood;
+            moodError.style.display = 'none';
+        });
+    });
+
+    // Отправка формы
+    feedbackForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const selectedMood = selectedMoodInput.value;
+        const tags = tagsInput.value.trim();
+        const comment = commentInput.value.trim();
+
+        if (!selectedMood) {
+            moodError.style.display = 'block';
+            return;
+        }   
+    // Дата и время
+    const d = new Date();
+    const formattedDate = d.toISOString().slice(0,19).replace('T',' ');
+
+    // Создание записи
+    const entryItem = document.createElement('li');
+    entryItem.style.backgroundColor = moodColors[selectedMood]; // цвет записи
+    entryItem.innerHTML = `
+        <p><strong>Date:</strong> ${formattedDate}</p>
+        <p><strong>Mood:</strong> ${selectedMood}</p>
+        <p><strong>Activities:</strong> ${tags || 'Нет'}</p>
+        <p><strong>Comment:</strong> ${comment}</p>
+    `;
+    reviewList.appendChild(entryItem);
+
+    // Очистка формы
+    feedbackForm.reset();
+    selectedMoodInput.value = '';
+    // Сброс выделения кнопок
+    moodButtons.forEach(btn => btn.classList.remove('selected'));
+    emptyMessage.style.display = 'none';
+});
+
+
+  </script>
+</body>
+</html>
